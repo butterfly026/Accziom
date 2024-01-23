@@ -1,0 +1,15 @@
+{
+  "description": "Accziom Application",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "type": "image/x-icon",
+      "sizes": "64x64 32x32 24x24 16x16"
+    }
+  ],
+  "name": "Accziom",
+  "start_url": ".",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
