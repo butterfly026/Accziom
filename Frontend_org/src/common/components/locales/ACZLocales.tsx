@@ -8,11 +8,11 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react';
-import { stateActions, useMyState } from '../../';
+import { stateActions, useACZState } from '../../';
 import { Locales } from './TheLocales';
 
 export const ACZLocales = () => {
-  const { snap } = useMyState();
+  const { snap } = useACZState();
   return (
     <Menu>
       <MenuButton>

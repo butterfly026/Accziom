@@ -1,3 +1,4 @@
+import { DefaultStorageType, SessionType, StateType, StorageType } from "@common/consts/types";
 import { proxy, subscribe, snapshot, useSnapshot } from "valtio";
 
 export * from "./actions";
@@ -6,9 +7,8 @@ function proxyWithPersistant(
   val: DefaultStorageType,
   opts: {
     key: string;
-  }
-) {
-  if (window.location.hostname.indexOf("vn") !== -1){
+  }) {
+  if (window.location.hostname.indexOf("vn") !== -1) {
     val.locale = "vi";
   }
   const local = localStorage.getItem(opts.key);
@@ -18,31 +18,6 @@ function proxyWithPersistant(
   });
   return state;
 }
-
-type StorageType = {
-  address: string;
-  username: string;
-  connector: string;
-  chain: string;
-  inviteCode: string;
-  isConnected: boolean;
-  isLogin: boolean;
-  locale: string;
-  token: any,
-  giftCode: string;
-};
-
-type DefaultStorageType = {
-  address: string;
-  connector: string;
-  chain: string;
-  isConnected: boolean;
-  inviteCode: string;
-  isLogin: boolean;
-  locale: string;
-  giftCode: string;
-
-};
 
 const storage: StorageType = proxyWithPersistant(
   {
@@ -60,14 +35,6 @@ const storage: StorageType = proxyWithPersistant(
   }
 );
 
-type SessionType = {
-  ready: boolean; // is ready?
-  count: number; // loading count
-  user: any; // wechat
-  pkInfo: any; //PK Info
-  vip: any; // vip
-  global: any; // global
-};
 const session: SessionType = proxy({
   ready: false,
   count: 0,
@@ -77,16 +44,12 @@ const session: SessionType = proxy({
   global: {}
 });
 
-export type StateType = {
-  storage: StorageType;
-  session: SessionType;
-};
 export const state: StateType = proxy({
   storage,
   session,
 });
 
-export function useMyState() {
+export function useACZState() {
   const snap = useSnapshot<StateType>(state);
   return { snap };
 }

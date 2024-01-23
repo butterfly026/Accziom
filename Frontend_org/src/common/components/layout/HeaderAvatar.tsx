@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Button,
   Flex,
   Modal,
   ModalBody,
@@ -18,13 +19,12 @@ import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 // import { useDisconnect } from "wagmi";
 import {
-  MyButton,
   formatAddress,
   formatVip,
   getAvatar,
   state,
   stateActions,
-} from "../../common";
+} from "@common/index";
 
 const styles = {
   HAvatar: {
@@ -136,12 +136,12 @@ export default function HeaderAvatar({ user }: any) {
             </Flex>
             <Flex justifyContent="center" py={5}>
               <Link to="/home/settings/info" onClick={onClose}>
-                <MyButton
+                <Button
                   fontWeight="var(--cds-fontWeights-medium)"
                   borderRadius="full"
                 >
                   <FormattedMessage id="text.ManageYourProfile" />
-                </MyButton>
+                </Button>
               </Link>
             </Flex>
 
@@ -185,9 +185,7 @@ export default function HeaderAvatar({ user }: any) {
                       onClose();
                       state.storage.isLogin = false;
                       state.session.ready = false;
-                      state.storage.token = '';
-                      // disconnect();
-                      stateActions.walletLogout();
+                      state.storage.token = '';                      
                     }}
                   >
                     <FormattedMessage id="text.SignOut" />

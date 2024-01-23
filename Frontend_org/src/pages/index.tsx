@@ -1,41 +1,21 @@
+import { Box, Flex, useColorMode, useDisclosure } from '@chakra-ui/react';
 import {
-  useEffect,
-  useState,
-  useRef,
-  useCallback,
   MouseEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from 'react';
-import { request } from '../common/';
+import { Outlet } from 'react-router-dom';
+import Footer from '@common/components/layout/Footer';
+import HeaderBar from '@common/components/layout/HeaderBar';
+import Sidebar from '@common/components/layout/Sidebar';
+import { styles } from '@common/components/layout/styles/layout.styles';
+import { useACZState } from '@common/state';
 
-import PageFooter from './home/index/PageFooter';
-import PageNav from './home/index/PageNav';
-import PageOne from './home/index/PageOne';
-import { Box, useColorMode, useDisclosure } from '@chakra-ui/react';
-import { styles } from './home/layout.styles';
-
-export default function index() {
-  const sidebarRef = useRef(null);
-  const layoutDesktopContentRef = useRef(null);
-  const [isResizing, setIsResizing] = useState(false);
-  const [res, setRes] = useState<any>([]);
-  const [showLogin, setShowLogin] = useState(false);
-  useEffect(() => {
-    request('home/home', {}).then((res) => {
-      setRes(res.data);
-    });
-  }, []);
-
-  const startResizing = useCallback<MouseEventHandler<HTMLDivElement>>(
-    (mouseDownEvent) => {
-      (layoutDesktopContentRef.current! as HTMLDivElement).style.setProperty(
-        '--sidebar-transition',
-        'none',
-      );
-      setIsResizing(true);
-    },
-    [],
-  );
-
+export default function layout() {
+  const [getSidebarStatus, setSidebarStatus] = useState(1);
+  const { snap } = useACZState();
   const {
     isOpen: isDrawerOpen,
     onOpen: onDrawerOpen,
@@ -46,8 +26,8 @@ export default function index() {
       'chat-widget-container',
     ) as HTMLElement;
 
+    // const mainArea = document.getElementById('main-area');
     const sidebar = document.querySelector('#right-sidebar') as HTMLDivElement;
-
     if (!widget || !sidebar) return;
 
     widget.style.transition = 'right 200ms linear';
@@ -64,44 +44,28 @@ export default function index() {
     };
   }, [isDrawerOpen]);
 
+  const sidebarRef = useRef(null);
+  const layoutDesktopContentRef = useRef(null);
+  const [isResizing, setIsResizing] = useState(false);
+  // const [sidebarWidth, setSidebarWidth] = useState(200);
+
+
+
   const { colorMode } = useColorMode();
-  const [showLoginModal, setShowLoginModal] = useState(false);
   return (
-    <>
-      <Box sx={styles.LayoutDesktopContent} ref={layoutDesktopContentRef}>
-        <Box
-          sx={{
-            ...(isDrawerOpen ? styles.RightSidebar : styles.RightSidebarClose),
-            ...styles.Transition,
-            position: 'fixed',
-            right: '0',
-            zIndex: '3000',
-            ...(colorMode === 'light'
-              ? {
-                  background: 'var(--cds-colors-gray-0, #fff)',
-                }
-              : { background: 'var(--cds-colors-black, #000)' }),
-          }}
-          id='right-sidebar'
-          ref={sidebarRef}
-        >
-          <Box
-            sx={styles.RightSidebarResizer}
-            className='right-sidebar-resizer'
-            onMouseDown={startResizing}
-          />
-        </Box>
+    <Flex>
+      <Box
+        id='main-area'
+        sx={{
+          ...(isDrawerOpen
+            ? styles.MainContentFlex2
+            : styles.MainContentFlex),
+          ...styles.Transition,
+        }}
+      >
+        This is main area
       </Box>
-      <PageNav
-        isDrawerOpen={isDrawerOpen}
-        onDrawerOpen={onDrawerOpen}
-        onDrawerClose={onDrawerClose}
-        showLogin={showLogin}
-        onHideLogin={() => setShowLogin(false)}
-      />
-      <PageOne onShowLogin={() => setShowLogin(true)} />
-      <PageFooter />
-      {/* <PageFs /> */}
-    </>
+
+    </Flex>
   );
 }

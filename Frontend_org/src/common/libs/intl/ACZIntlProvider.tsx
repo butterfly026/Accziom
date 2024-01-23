@@ -1,25 +1,23 @@
 import { IntlProvider } from 'react-intl';
 import { useState, useEffect } from 'react';
-import { state, useMyState } from '../../state';
+import { state, useACZState } from '../../state';
 import enLang from '../../../locales/en.json';
-import enArticles from '../../../locales/en.articles';
 
 export function ACZIntlProvider({ children }: any) {
-  const { snap } = useMyState();
+  const { snap } = useACZState();
   const [lang, setLang] = useState('en');
-  const [messages, setMessages] = useState({ ...enLang, ...enArticles });
+  const [messages, setMessages] = useState({ ...enLang });
 
   useEffect(() => {
     const lang = snap.storage.locale ?? 'en';
 
-    if (lang === 'en') return setMessages({ ...enLang, ...enArticles });
+    if (lang === 'en') return setMessages({ ...enLang });
 
     Promise.all([
       import(`../../../locales/${lang}.json`),
-      import(`../../../locales/${lang}.articles.ts`),
     ])
-      .then(([langData, articleData]) => {
-        setMessages(Object.assign(langData.default, articleData.default));
+      .then(([langData]) => {
+        setMessages(Object.assign(langData.default));
         setLang(lang);
         state.storage.locale = lang;
       })

@@ -11,15 +11,6 @@
             "@common/*": [
                 "src/common/*"
             ],
-            "@components/*": [
-                "src/components/*"
-            ],
-            "@constants/*": [
-                "src/constants/*"
-            ],
-            "@consts/*": [
-                "src/common/consts/*"
-            ],
             "@locales/*": [
                 "src/locales/*"
             ],
@@ -28,6 +19,15 @@
             ],
             "@/*": [
                 "src/*"
+            ],
+            "@index/*": [
+                "src/pages/index/*"
+            ],
+            "@asets/*": [
+                "src/pages/asets/*"
+            ],
+            "@marketplace/*": [
+                "src/pages/marketplace/*"
             ]
         }
     }

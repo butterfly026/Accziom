@@ -1,8 +1,6 @@
 import { state } from '.';
 import { request } from '..';
-import globalAction from './global';
 export const stateActions = {
-  ...globalAction,
   addLoading: () => {
     state.session.count++;
   },
@@ -26,7 +24,7 @@ export const stateActions = {
   
   loginFailed() {
     state.storage.isConnected = false;
-    if (location.pathname !== '/') location.href = '/';
+    // if (location.pathname !== '/') location.href = '/';
     state.session.ready = true;
   },
   loginSuccess() {

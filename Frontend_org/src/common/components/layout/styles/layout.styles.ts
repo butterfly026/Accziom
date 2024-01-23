@@ -24,49 +24,17 @@ export const styles = {
     '--sidebar-transition': 'all 200ms linear',
     '--right-sidebar-width': '350px'
   },
-  RightSidebar: {
-    position: 'fixed',
-    right: '0',
-    display: 'flex',
-    zIndex: 100,
-    width: 'var(--right-sidebar-width, 200px)',
-    '@media screen and (max-width: 800px)': {
-      width: '100%'
-    }
-  },
-  RightSidebarClose: {
-    width: 0,
-    heigh: '100vh',
-    display: 'flex',
-    overflow: 'hidden',
-    position: 'fixed',
-    right: 0,
-    zIndex: 100,
-  },
-  RightSidebarContent: {
-    flex: '1',
-  },
-  RightSidebarResizer: {
-    position: 'absolute',
-    width: '6px',
-    cursor: 'col-resize',
-    resize: 'horizontal',
-    height: '100vh',
-    borderLeft: '1px solid var(--cds-colors-chakra-border-color)',
-  },
 
   MainContentFlex: {
     display: 'flex',
     flex: '1 1 auto',
     flexDirection: 'column',
-    marginLeft: { base: '0', sm: '0', md: '87px', lg: '240px' },
     minHeight: 'var(--full-view-height,100vh)',
   },
   MainContentFlex2: {
     display: 'flex',
     flex: '1 1 auto',
     flexDirection: 'column',
-    marginLeft: { base: '0', sm: '0', md: '87px', lg: '240px' },
     minHeight: 'var(--full-view-height,100vh)',
     marginRight: 'var(--right-sidebar-width, 200px)',
   },

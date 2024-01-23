@@ -10,13 +10,10 @@ import {
   MenuList,
   MenuItem,
 } from '@chakra-ui/react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { stateActions } from '../../common';
-import { Locales } from '../../consts/TheLocales';
 
-import './footer.scss';
+import './styles/footer.scss';
 const styles = {
   Footer: {
     height: '64px',
@@ -74,8 +71,6 @@ const styles = {
 };
 
 export default () => {
-  const [lang, setLang] = useState(Locales[0].label);
-  console.log(Locales);
   return (
     <Flex sx={styles.Footer}>
       <Flex sx={styles.Content}>
@@ -85,35 +80,7 @@ export default () => {
           </Text>
         </HStack>
         <HStack>
-          <Menu>
-            <MenuButton
-              as={Button}
-              rightIcon={<ChevronDownIcon />}
-              sx={{
-                _light: { bg: 'gray.0' },
-                _dark: { bg: 'gray.99' },
-                minWidth: 'unset',
-              }}
-            >
-              {lang}
-            </MenuButton>
-            <MenuList>
-              {Locales.map((item, index) => {
-                return (
-                  <MenuItem
-                    value={item.value}
-                    key={'option' + index}
-                    onClick={(e) => {
-                      stateActions.setLocale(e.currentTarget['value']);
-                      setLang(item.label);
-                    }}
-                  >
-                    {item.label}
-                  </MenuItem>
-                );
-              })}
-            </MenuList>
-          </Menu>
+          
           <Link to='/home/help'>
             <Box as='button' sx={styles.Button}>
               <Box as='span' sx={styles.Span}>

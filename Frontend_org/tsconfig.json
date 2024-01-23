@@ -27,7 +27,7 @@
         "src/common/*"
       ],
       "@components/*": [
-        "src/components/*"
+        "src/common/components/*"
       ],
       "@constants/*": [
         "src/constants/*"

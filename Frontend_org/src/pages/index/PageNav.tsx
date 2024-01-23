@@ -14,7 +14,7 @@ import MyLineSvg from '@assets/images/line.svg';
 import {
   PrimaryButton,
   stateActions,
-  useMyState
+  useACZState
 } from '@common';
 import './scss/nav.scss';
 import { ChatIcon } from '@chakra-ui/icons';
@@ -70,7 +70,7 @@ export default function PageNav({
   onDrawerClose,
 }: any) {
   const { toggleColorMode } = useColorMode();
-  const { snap } = useMyState();
+  const { snap } = useACZState();
   const getThemeStatus = useColorModeValue('toggle', 'toggle theme_switch_btn');
 
   const [showLoginModal, setShowLoginModal] = useState(false);

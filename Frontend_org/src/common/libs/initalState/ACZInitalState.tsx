@@ -1,18 +1,14 @@
 import { useColorMode } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { Outlet, useSearchParams } from 'react-router-dom'
-import { stateActions, useMyState } from '../..'
+import { stateActions, useACZState } from '../..'
 
 export function ACZInitalState() {
-  const { snap } = useMyState()
+  const { snap } = useACZState()
   const { colorMode, toggleColorMode } = useColorMode()
 
   // inviteCode
   const [searchParams] = useSearchParams()
-  // useEffect(() => {
-  //   var inviteCode = searchParams.get("invite_code");
-  //   if (inviteCode) stateActions.setInviteCode(inviteCode);
-  // }, []);
 
   // colorMode
   useEffect(() => {
@@ -26,12 +22,13 @@ export function ACZInitalState() {
 
   useEffect(() => {
 
-    if (!snap.storage.token && location.pathname !== '/resetPassword') {
+    if (!snap.storage.token) {
       stateActions.loginFailed()
     } else {
       stateActions.loginSuccess()
     }
   }, [snap.storage.isLogin])
 
-  if (snap.session.ready) return <Outlet />  
+  if (snap.session.ready)
+    return <Outlet />  
 }
