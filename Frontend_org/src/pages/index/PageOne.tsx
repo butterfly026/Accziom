@@ -1,5 +1,5 @@
 
-import { ACZContent } from "@common";
+import { ACZContent } from "@common/index";
 import Typed from "react-typed";
 import { FormattedMessage, useIntl } from "react-intl";
 

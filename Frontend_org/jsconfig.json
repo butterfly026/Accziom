@@ -28,6 +28,12 @@
             ],
             "@marketplace/*": [
                 "src/pages/marketplace/*"
+            ],
+            "@type/*": [
+                "src/common/type/*"
+            ],
+            "@types/*": [
+                "src/common/types/*"
             ]
         }
     }

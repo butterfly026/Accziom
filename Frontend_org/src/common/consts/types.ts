@@ -25,10 +25,8 @@ export type DefaultStorageType = {
 export type SessionType = {
     ready: boolean; // is ready?
     count: number; // loading count
-    user: any; // wechat
-    pkInfo: any; //PK Info
-    vip: any; // vip
-    global: any; // global
+    user: any; // wechat    
+    
 };
 
 export type StateType = {

@@ -1,15 +1,13 @@
 import { IntlProvider } from 'react-intl';
 import { useState, useEffect } from 'react';
-import { state, useACZState } from '../../state';
 import enLang from '../../../locales/en.json';
 
 export function ACZIntlProvider({ children }: any) {
-  const { snap } = useACZState();
   const [lang, setLang] = useState('en');
   const [messages, setMessages] = useState({ ...enLang });
 
   useEffect(() => {
-    const lang = snap.storage.locale ?? 'en';
+    const lang =  'en';
 
     if (lang === 'en') return setMessages({ ...enLang });
 
@@ -19,13 +17,12 @@ export function ACZIntlProvider({ children }: any) {
       .then(([langData]) => {
         setMessages(Object.assign(langData.default));
         setLang(lang);
-        state.storage.locale = lang;
       })
       .catch((err) => {
         // Handle error
         console.log('Intl Error', err);
       });
-  }, [snap.storage.locale]);
+  }, []);
 
   return (
     <IntlProvider locale={lang} messages={messages} defaultLocale={lang}>

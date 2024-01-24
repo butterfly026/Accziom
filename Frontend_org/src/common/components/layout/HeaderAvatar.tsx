@@ -19,11 +19,7 @@ import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 // import { useDisconnect } from "wagmi";
 import {
-  formatAddress,
-  formatVip,
   getAvatar,
-  state,
-  stateActions,
 } from "@common/index";
 
 const styles = {
@@ -67,11 +63,6 @@ const styles = {
 export default function HeaderAvatar({ user }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
-  // const { disconnect, isSuccess } = useDisconnect();
-
-  // useEffect(() => {
-  //   if (isSuccess) stateActions.walletLogout();
-  // }, [isSuccess]);
 
   return (
     <>
@@ -103,17 +94,6 @@ export default function HeaderAvatar({ user }: any) {
                 size="lg"
                 src={getAvatar(user?.avatar)}
               />
-              <Flex sx={styles.Uvip}>
-                <Tag
-                  variant="solid"
-                  borderRadius="full"
-                  py="0px"
-                  px="0.6rem"
-                  colorScheme="twitter"
-                >
-                  {formatVip(user?.vips_id)}
-                </Tag>
-              </Flex>
             </Flex>
             <Flex justifyContent="center" pt={8} w="full" flexDir="column">
               <Text
@@ -182,10 +162,7 @@ export default function HeaderAvatar({ user }: any) {
                   <Text
                     color="#e4317c"
                     onClick={() => {
-                      onClose();
-                      state.storage.isLogin = false;
-                      state.session.ready = false;
-                      state.storage.token = '';                      
+                      onClose();                    
                     }}
                   >
                     <FormattedMessage id="text.SignOut" />

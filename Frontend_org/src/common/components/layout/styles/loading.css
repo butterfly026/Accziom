@@ -1,0 +1,15 @@
+@keyframes loading-animation {
+  from {
+    opacity: .2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.loading-logo {
+  animation-name: loading-animation;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}

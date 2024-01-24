@@ -1,7 +1,7 @@
 import { useToast } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 
-export function useMyToast() {
+export function useACZToast() {
   const toast = useToast();
   const intl = useIntl();
   const showSuccess = ({ title = intl.formatMessage({id: 'text.SUCCESS'}), description }: any) => {

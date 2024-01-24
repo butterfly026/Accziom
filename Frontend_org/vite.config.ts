@@ -7,7 +7,7 @@ import fs from 'fs/promises';
 
 export default ({ mode }) => {
   const env = loadEnv(mode, process.cwd());
-  return defineConfig({    
+  return defineConfig({
     server: {
       hmr: true,
       cors: true,
@@ -33,7 +33,10 @@ export default ({ mode }) => {
         filename: "analyse.html", // will be saved in project's root
       }) as PluginOption,
     ],
-    define: { "process.env": {} },
+    define: {
+      "process.env": {},
+      global: {},
+    },
     css: {
       // css预处理器
       preprocessorOptions: {

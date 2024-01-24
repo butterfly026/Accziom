@@ -127,7 +127,7 @@ export const getDayMonth = (str: string) => {
 export const getDateAll = (str: string, type: string) => {
   //获取简写全部
   // console.log("获取简写全部");
-  if (str) {    
+  if (str) {
     let nowdate = new Date((parseInt(str) > 121545) ? parseInt(str) : str.replace(/\s/, 'T'));
     let year = nowdate.getFullYear(); //年
     let month = nowdate.getMonth() + 1; //月
@@ -143,7 +143,7 @@ export const getDateAll = (str: string, type: string) => {
     }
     if (type == '1H' || type == '1D') {
       let h0 = h < 10 ? ('0' + h) : h;
-      let m0 = m < 10 ? ('0' + m) : m;      
+      let m0 = m < 10 ? ('0' + m) : m;
       return `${h0}:${m0}`;
     } else if (type == 'HMS') {
       let h0 = h < 10 ? ('0' + h) : h;
@@ -185,7 +185,7 @@ export const numberWithCommas = (num: string, len: number = 2) => {
 
 export const getMyHostname = () => {
   let host = window.location.hostname.replace('www.', '');
-  if(host.indexOf('localhost') !== -1 || host.indexOf('127.0.0.1') !== -1){
+  if (host.indexOf('localhost') !== -1 || host.indexOf('127.0.0.1') !== -1) {
     host = 'accziom.com';
   }
   return host;
@@ -193,14 +193,39 @@ export const getMyHostname = () => {
 
 export const getPaginationLocale = (locale: string) => {
   switch (locale.toLowerCase()) {
-      case 'en':
-          return enUS;
-          break;
-      case 'fr':
-          return frFR;
-          break;
-      default:
-          return enUS;
-          break;
+    case 'en':
+      return enUS;
+      break;
+    case 'fr':
+      return frFR;
+      break;
+    default:
+      return enUS;
+      break;
   }
 }
+
+export const getUserFormalName = (body: {
+  firstName: string,
+  middleName: string | undefined,
+  lastName: string,
+}): string => {
+  if (body) {
+    return [body.firstName, body.middleName, body.lastName].filter((_) => !!_).map((_) => _?.trim()).join(' ');
+  }
+  return '';
+};
+
+export const getUserDisplayName = (body: any): string => {
+  if (body) {
+    if (body.penName) return body.penName;
+    if (body.displayName) return body.displayName;
+    const formalName = getUserFormalName(body);
+    if (formalName) return formalName;
+  }
+  return 'Unknown';
+};
+
+export const cleanUp = (): void => {
+  
+};

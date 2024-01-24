@@ -1,4 +1,4 @@
-import { request, useMyToast } from '@/common';
+import { request, useACZToast } from '@/common';
 
 export const onFollow = (data: any) =>
   request('friends/follow', { data: data });

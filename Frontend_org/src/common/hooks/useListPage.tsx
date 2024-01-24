@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useMyToast, request } from "../";
+import { useACZToast, request } from "../";
 
 export const useListPage = ({ baseUri, defaultParams }: any) => {
   const [params, setParams] = useState<any>({});
   const [getData, setData] = useState<any>({});
-  const { showRes } = useMyToast();
+  const { showRes } = useACZToast();
   const getList = (data: any, url = "") => {
     request(url || baseUri, { data: data })
       .then((res) => {
